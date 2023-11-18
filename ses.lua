@@ -49,7 +49,6 @@ local function TLQOYN_fake_script() -- ImageButton.ShiftGUI
 	local active = false
 	local ENABLED_OFFSET = CFrame.new(1.7, 0, 0)
 	local DISABLED_OFFSET = CFrame.new(-1.7, 0, 0)
-	local FIRST_PERSON_OFFSET = DISABLED_OFFSET  -- Use the same offset as DISABLED_OFFSET for first-person
 	local rootPos = Vector3.new(0, 0, 0)
 
 	local function UpdatePos()
@@ -84,9 +83,6 @@ local function TLQOYN_fake_script() -- ImageButton.ShiftGUI
 		end
 
 		if game:GetService("Workspace").CurrentCamera then
-			if IsInFirstPerson then
-				game:GetService("Workspace").CurrentCamera.CFrame = camera.CFrame * FIRST_PERSON_OFFSET
-			else
 				game:GetService("Workspace").CurrentCamera.CFrame = camera.CFrame * ENABLED_OFFSET
 			end
 		end
@@ -157,7 +153,6 @@ local function OMQRQRC_fake_script() -- ShiftlockStarterGui.LocalScript
 	local IsShiftLockMode = true
 	local IsShiftLocked = true
 	local IsActionBound = false
-	local IsInFirstPerson = false
 
 	ShiftLockController.OnShiftLockToggled = Instance.new("BindableEvent")
 
@@ -181,10 +176,6 @@ local function OMQRQRC_fake_script() -- ShiftlockStarterGui.LocalScript
 	function ShiftLockController:IsShiftLocked()
 		return IsShiftLockMode and IsShiftLocked
 	end
-
-	function ShiftLockController:SetIsInFirstPerson(isInFirstPerson)
-	IsInFirstPerson = isInFirstPerson
-end
 
 local function mouseLockSwitchFunc(actionName, inputState, inputObject)
 	if IsShiftLockMode then
