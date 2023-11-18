@@ -49,7 +49,6 @@ local function TLQOYN_fake_script() -- ImageButton.ShiftGUI
 	local active = false
 	local ENABLED_OFFSET = CFrame.new(1.7, 0, 0)
 	local DISABLED_OFFSET = CFrame.new(-1.7, 0, 0)
-	local FIRST_PERSON_OFFSET = DISABLED_OFFSET  -- Use the same offset as DISABLED_OFFSET for first-person
 	local rootPos = Vector3.new(0, 0, 0)
 
 	local function UpdatePos()
@@ -83,11 +82,7 @@ local function TLQOYN_fake_script() -- ImageButton.ShiftGUI
 			player.Character:FindFirstChildOfClass("Humanoid").RootPart.CFrame = GetUpdatedCameraCFrame()
 		end
 
-		if game:GetService("Workspace").CurrentCamera then
-			if IsInFirstPerson then
-				game:GetService("Workspace").CurrentCamera.CFrame = camera.CFrame * FIRST_PERSON_OFFSET
-			else
-				game:GetService("Workspace").CurrentCamera.CFrame = camera.CFrame * ENABLED_OFFSET
+		if game:GetService("Workspace").CurrentCamera then	game:GetService("Workspace").CurrentCamera.CFrame = camera.CFrame * ENABLED_OFFSET
 			end
 		end
 	end
@@ -175,7 +170,6 @@ local function OMQRQRC_fake_script() -- ShiftlockStarterGui.LocalScript
 	end
 
 	local initialize = function()
-		print("enabled")
 	end
 
 	function ShiftLockController:IsShiftLocked()
